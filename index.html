@@ -7,8 +7,8 @@
     <base href="/TestPages/" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="manifest.json" rel="manifest" />
-    <link href="manifest.json" rel="manifest" />
     <script src="decode.min.js"></script>
+
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="HelloBlazorV2.styles.css" rel="stylesheet" /> -->
 </head>
@@ -25,25 +25,25 @@
     <script type="module">
         import { BrotliDecode } from './decode.min.js';
         Blazor.start({
-          loadBootResource: function (type, name, defaultUri, integrity) {
-            if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
-              return (async function () {
-                const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
-                if (!response.ok) {
-                  throw new Error(response.statusText);
+            loadBootResource: function (type, name, defaultUri, integrity) {
+                if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
+                    return (async function () {
+                        const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        const originalResponseBuffer = await response.arrayBuffer();
+                        const originalResponseArray = new Int8Array(originalResponseBuffer);
+                        const decompressedResponseArray = BrotliDecode(originalResponseArray);
+                        const contentType = type ===
+                            'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+                        return new Response(decompressedResponseArray,
+                            { headers: { 'content-type': contentType } });
+                    })();
                 }
-                const originalResponseBuffer = await response.arrayBuffer();
-                const originalResponseArray = new Int8Array(originalResponseBuffer);
-                const decompressedResponseArray = BrotliDecode(originalResponseArray);
-                const contentType = type === 
-                  'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-                return new Response(decompressedResponseArray, 
-                  { headers: { 'content-type': contentType } });
-              })();
             }
-          }
         });
-      </script>
+    </script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
 

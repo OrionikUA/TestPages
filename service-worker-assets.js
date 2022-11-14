@@ -153,11 +153,15 @@
       "url": "css\/app.css"
     },
     {
+      "hash": "sha256-10aXol7Onqv85rtqJQkZlzfW6xUpX0kH79yOSrF0JS8=",
+      "url": "decode.min.js"
+    },
+    {
       "hash": "sha256-oEo6d+KqX5fjxTiZk\/w9NB3Mi0+ycS5yLwCKwr4IkbA=",
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-LxV9T8hipIRSnAW6K7QzRiYwc6PC6f5aR4QeGixzkSU=",
+      "hash": "sha256-VOhZ2CoTsZuhBbZOWU4sQUiAAnvySIX8Kfcl2ddfNNw=",
       "url": "index.html"
     },
     {
@@ -165,5 +169,5 @@
       "url": "manifest.json"
     }
   ],
-  "version": "VlbjrgFx"
+  "version": "KsULuIk3"
 };
